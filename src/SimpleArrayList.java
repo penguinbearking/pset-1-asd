@@ -153,7 +153,7 @@ public class SimpleArrayList {
 	
 	private void checkIdxBounds(int idx, int size) {
 		if(idx < 0 || idx >= size) {
-			throw new IndexOutOfBoundsException("Index " + idx + "; Size " + size);
+			throw new IndexOutOfBoundsException("Index: " + idx + ", Size: " + size);
 		}
 	}
 
