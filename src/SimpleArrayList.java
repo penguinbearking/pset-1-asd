@@ -56,7 +56,7 @@ public class SimpleArrayList {
 	}
 	
 	public String get(int idx) {
-		checkIdxBounds(idx, size);
+		checkIdxBounds2(idx, size);
 		
 		return arr[idx];
 	}
@@ -73,7 +73,7 @@ public class SimpleArrayList {
 	}
 	
 	public String remove(int idx) {
-		checkIdxBounds(idx, size);
+		checkIdxBounds2(idx, size);
 		String el = arr[idx];
 		for(int i = idx; i < size-1; i++) {
 			arr[i] = arr[i+1];
@@ -93,7 +93,7 @@ public class SimpleArrayList {
 	}
 	
 	public String set(int idx, String s) {
-		checkIdxBounds(idx, size);
+		checkIdxBounds2(idx, size);
 		String el = arr[idx];
 		arr[idx] = s; 
 		return el;
@@ -154,6 +154,12 @@ public class SimpleArrayList {
 	private void checkIdxBounds(int idx, int size) {
 		if(idx < 0 || idx >= size) {
 			throw new IndexOutOfBoundsException("Index: " + idx + ", Size: " + size);
+		}
+	}
+	
+	private void checkIdxBounds2(int idx, int size) {
+		if(idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException("Index " + idx + " out of bounds for length " + size);
 		}
 	}
 
