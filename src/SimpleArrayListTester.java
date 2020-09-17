@@ -11,6 +11,7 @@ public class SimpleArrayListTester {
         testConstructors();
         testAdd();
         testClearAndIsEmpty();
+        testTrimToSize();
         testContainsAndIndexOf();
         testGet();
         testRemove();
@@ -30,6 +31,16 @@ public class SimpleArrayListTester {
 
         try {
             ArrayList<String> list = new ArrayList<>(15);
+
+            sb.append("\nInitial contents of list: " + list);
+            sb.append("\nInitial size of list: " + list.size());
+        } catch (Exception e) {
+            sb.append("\nFailed to create list: ");
+            sb.append(e.toString());
+        }
+        
+        try {
+            ArrayList<String> list = new ArrayList<>(-1);
 
             sb.append("\nInitial contents of list: " + list);
             sb.append("\nInitial size of list: " + list.size());
@@ -73,6 +84,16 @@ public class SimpleArrayListTester {
 
         try {
             SimpleArrayList simpleList = new SimpleArrayList(15);
+
+            sb.append("\nInitial contents of list: " + simpleList);
+            sb.append("\nInitial size of list: " + simpleList.size());
+        } catch (Exception e) {
+            sb.append("\nFailed to create list: ");
+            sb.append(e.toString());
+        }
+        
+        try {
+            SimpleArrayList simpleList = new SimpleArrayList(-1);
 
             sb.append("\nInitial contents of list: " + simpleList);
             sb.append("\nInitial size of list: " + simpleList.size());
@@ -287,6 +308,54 @@ public class SimpleArrayListTester {
             System.out.println(actual);
         } else {
             System.out.println("PASSED: testClearAndIsEmpty.");
+        }
+    }
+    
+    private static void testTrimToSize() {
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("zero", "one", "two", "three"));
+        SimpleArrayList simpleList = new SimpleArrayList(Arrays.asList("zero", "one", "two", "three"));
+        
+        try {
+            sb.append("Initial contents of list: " + list);
+            sb.append("\nInitial size of list: " + list.size());
+            
+            list.remove(1);
+            list.trimToSize();
+            
+            sb.append("\nUpdated contents of list: " + list);
+            sb.append("\nUpdated size of list: " + list.size());
+        } catch (Exception e) {
+            sb.append("\nFailed to trim list to size: ");
+            sb.append(e.toString());
+        }
+        
+        String expected = sb.toString();
+        sb.setLength(0);
+        
+        try {
+            sb.append("Initial contents of list: " + simpleList);
+            sb.append("\nInitial size of list: " + simpleList.size());
+            
+            simpleList.remove(1);
+            simpleList.trimToSize();
+            
+            sb.append("\nUpdated contents of list: " + simpleList);
+            sb.append("\nUpdated size of list: " + simpleList.size());
+        } catch (Exception e) {
+            sb.append("\nFailed to trim list to size: ");
+            sb.append(e.toString());
+        }
+        
+        String actual = sb.toString();
+        sb.setLength(0);
+
+        if (!expected.equals(actual)) {
+            System.out.println("FAILED: testTrimToSize.\n");
+            System.out.println(expected);
+            System.out.println();
+            System.out.println(actual);
+        } else {
+            System.out.println("PASSED: testTrimToSize.");
         }
     }
 

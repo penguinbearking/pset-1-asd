@@ -12,6 +12,7 @@ public class SimpleArrayList {
 	}
 	
 	public SimpleArrayList(int n) {
+		if(n < 0) { throw new IllegalArgumentException("Illegal Capacity: " + n); }
 		arr = new String[n];
 		size = 0;
 	}
